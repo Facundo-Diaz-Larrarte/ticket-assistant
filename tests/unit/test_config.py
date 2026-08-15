@@ -14,5 +14,6 @@ def test_load_events_config():
 
 def test_load_buyer_profiles_example():
     profiles = load_buyer_profiles("config/buyer_profiles.example.yaml")
-    assert "default" in profiles
-    assert profiles["default"].first_name == "Facundo"
+    assert "facu" in profiles
+    assert profiles["facu"].first_name == "Facundo"
+    assert len(profiles) >= 2

@@ -48,13 +48,27 @@ class TelegramNotifier:
         is_restock: bool = False,
         buyer_dni: Optional[str] = None,
         buyer_phone: Optional[str] = None,
-        buyer_email: Optional[str] = None
+        buyer_email: Optional[str] = None,
+        forecast: Optional[dict] = None
     ):
-        """Plantilla preformateada para apertura de entradas o remanente con Tap-to-Copy."""
+        """Plantilla preformateada para apertura de entradas o remanente con Ticket Intelligence y Tap-to-Copy."""
         title = "🚨 <b>¡REMANENTE DISPONIBLE!</b>" if is_restock else "🎟️ <b>¡NUEVAS ENTRADAS HABILITADAS!</b>"
         location = f"\n📍 <b>Lugar:</b> {venue}" if venue else ""
         if city:
             location += f" ({city})"
+
+        intel_section = ""
+        if forecast:
+            prob = forecast.get("sold_out_probability_pct", 0)
+            risk = forecast.get("risk_label", "")
+            est_hours = forecast.get("expected_time_to_sold_out_hours", 0)
+            recom = forecast.get("recommendation", "")
+            intel_section = (
+                f"\n\n📊 <b>Ticket Intelligence™ (Probabilidad de Agotamiento):</b>\n"
+                f"• <b>Probabilidad de Sold-Out:</b> {prob}% ({risk})\n"
+                f"• <b>Tiempo estimado hasta Sold-Out:</b> ~{est_hours} hs\n"
+                f"• 💡 <b>Consejo:</b> {recom}"
+            )
 
         quick_data = ""
         if buyer_dni or buyer_phone or buyer_email:
@@ -71,6 +85,7 @@ class TelegramNotifier:
             f"🎤 <b>Evento:</b> {event_name}{location}\n\n"
             f"⚡ <b>¡Ingresá ahora para comprar!:</b>\n"
             f"{event_url}"
+            f"{intel_section}"
             f"{quick_data}"
         )
         return await self.send_message(msg)
