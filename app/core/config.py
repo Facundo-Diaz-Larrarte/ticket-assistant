@@ -22,8 +22,14 @@ class MonitoringSettings(BaseModel):
 
 class TelegramSettings(BaseModel):
     enabled: bool = True
-    bot_token: str = Field(default_factory=lambda: os.getenv("TELEGRAM_BOT_TOKEN", ""))
-    chat_id: str = Field(default_factory=lambda: os.getenv("TELEGRAM_CHAT_ID", ""))
+    bot_token: str = ""
+    chat_id: str = ""
+
+    def model_post_init(self, __context):
+        if not self.bot_token:
+            self.bot_token = os.getenv("TELEGRAM_BOT_TOKEN", "")
+        if not self.chat_id:
+            self.chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
 
 class BrowserSettings(BaseModel):
     headless: bool = False
