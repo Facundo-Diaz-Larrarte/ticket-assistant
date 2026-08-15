@@ -1,0 +1,54 @@
+# ==============================================================================
+# CONFIGURACIÓN DE EVENTOS Y ARTISTAS (WATCHLIST)
+# ==============================================================================
+# Aquí defines qué bandas y ciudades quieres vigilar en tiempo real.
+# El bot solo te avisará y actuará cuando haya coincidencias exactas con esta lista.
+
+watchlist:
+  # ----------------------------------------------------------------------------
+  # BANDA 1: Desakta2 en Río Cuarto
+  # ----------------------------------------------------------------------------
+  - name: "Desakta2 en Río Cuarto"
+    provider: "eden"
+    keywords:
+      - "Desakta2"
+      - "Desaktados"
+    city: "Rio Cuarto"
+    quantity: 2
+    sectors: [] # Vacío para que elijas el sector/VIP manualmente
+    buyer_profile: "default"
+    auto_buy: true
+    notify_telegram: true
+
+  # ----------------------------------------------------------------------------
+  # BANDA 2: Q' Lokura en Río Cuarto
+  # ----------------------------------------------------------------------------
+  - name: "Q' Lokura en Río Cuarto"
+    provider: "eden"
+    keywords:
+      - "Q' Lokura"
+      - "Q Lokura"
+      - "Q'Lokura"
+      - "Qlokura"
+    city: "Rio Cuarto"
+    quantity: 2
+    sectors: [] # Vacío para que elijas el sector/VIP manualmente
+    buyer_profile: "default"
+    auto_buy: true
+    notify_telegram: true
+
+# ==============================================================================
+# URLs DIRECTAS ESPECÍFICAS (Opcional)
+# ==============================================================================
+# Si ya conoces el link directo de un evento (aunque esté agotado o próximo a abrir),
+# puedes dejarlo aquí para que vigile remanentes y aperturas de esa URL fija.
+monitored_events:
+  - url: "https://www.edenentradas.ar/event/desakta2-150826"
+    provider: "eden"
+    quantity: 2
+    sectors:
+      - "Campo General"
+      - "General"
+    buyer_profile: "default"
+    auto_buy: true
+    notify_telegram: true

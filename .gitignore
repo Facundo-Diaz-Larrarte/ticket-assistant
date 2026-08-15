@@ -1,0 +1,30 @@
+# Python & Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+
+# Data & Profiles (Security & Privacy)
+data/profiles/
+data/*.db
+data/*.sqlite
+data/*.sqlite3
+config/buyer_profiles.yaml
+.env
+
+# Logs
+logs/
+*.log
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp

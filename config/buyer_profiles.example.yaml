@@ -1,0 +1,36 @@
+# Plantilla de ejemplo con 4 cuentas para compra masiva (hasta 16 entradas)
+facu:
+  first_name: "Facundo"
+  last_name: "Diaz Larrarte"
+  dni: "43475555"
+  email: "facu150102@gmail.com"
+  phone: "3585145764"
+  city: "Rio Cuarto"
+  province: "Córdoba"
+
+cuenta2:
+  first_name: "Segundo"
+  last_name: "Titular"
+  dni: "40111222"
+  email: "segundatitular@ejemplo.com"
+  phone: "3584111222"
+  city: "Rio Cuarto"
+  province: "Córdoba"
+
+cuenta3:
+  first_name: "Tercer"
+  last_name: "Titular"
+  dni: "38999888"
+  email: "tercertitular@ejemplo.com"
+  phone: "3585999888"
+  city: "Rio Cuarto"
+  province: "Córdoba"
+
+cuenta4:
+  first_name: "Cuarto"
+  last_name: "Titular"
+  dni: "39444555"
+  email: "cuartotitular@ejemplo.com"
+  phone: "3584444555"
+  city: "Rio Cuarto"
+  province: "Córdoba"

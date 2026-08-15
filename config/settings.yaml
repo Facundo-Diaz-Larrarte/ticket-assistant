@@ -1,0 +1,26 @@
+app:
+  name: "Ticket Assistant"
+  environment: "development"
+  dry_run: true # En modo dry_run el asistente automatiza hasta antes de la pantalla de pago
+
+monitoring:
+  default_interval_seconds: 5.0
+  launch_window_interval_seconds: 1.5
+  adaptive_backoff_max_seconds: 60.0
+  max_consecutive_errors: 5
+
+telegram:
+  enabled: true
+  bot_token: "8624208375:AAFaJgdxXznVfs7JCwmQLBYJsxROctgOQpc"
+  chat_id: "1790742403"
+
+browser:
+  headless: false
+  slow_mo_ms: 50
+  user_data_dir: "data/profiles/eden"
+  timeout_ms: 15000
+
+sound:
+  enabled: true
+  beep_frequency_hz: 1000
+  beep_duration_ms: 800
