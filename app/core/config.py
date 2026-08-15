@@ -3,7 +3,11 @@ import yaml
 from pathlib import Path
 from typing import List, Dict, Optional
 from pydantic import BaseModel, Field
+from dotenv import load_dotenv
 from app.core.models import WatchlistItem, MonitoredEventConfig, BuyerProfile
+
+# Cargar variables de entorno desde .env si existe
+load_dotenv()
 
 class AppSettings(BaseModel):
     name: str = "Ticket Assistant"
@@ -17,9 +21,9 @@ class MonitoringSettings(BaseModel):
     max_consecutive_errors: int = 5
 
 class TelegramSettings(BaseModel):
-    enabled: bool = False
-    bot_token: str = ""
-    chat_id: str = ""
+    enabled: bool = True
+    bot_token: str = Field(default_factory=lambda: os.getenv("TELEGRAM_BOT_TOKEN", ""))
+    chat_id: str = Field(default_factory=lambda: os.getenv("TELEGRAM_CHAT_ID", ""))
 
 class BrowserSettings(BaseModel):
     headless: bool = False

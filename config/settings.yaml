@@ -11,8 +11,8 @@ monitoring:
 
 telegram:
   enabled: true
-  bot_token: "8624208375:AAFaJgdxXznVfs7JCwmQLBYJsxROctgOQpc"
-  chat_id: "1790742403"
+  bot_token: "" # Se carga automáticamente desde el archivo secreto .env o variables de entorno
+  chat_id: ""   # Se carga automáticamente desde el archivo secreto .env o variables de entorno
 
 browser:
   headless: false
