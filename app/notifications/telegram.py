@@ -8,10 +8,11 @@ class TelegramNotifier:
     """Envía notificaciones push instantáneas a Telegram."""
     
     def __init__(self, bot_token: str, chat_id: str, enabled: bool = True):
-        self.bot_token = bot_token
-        self.chat_id = chat_id
-        self.enabled = enabled and bool(bot_token and chat_id)
-        self.api_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+        # Limpiar espacios accidentales o comillas
+        self.bot_token = str(bot_token or "").strip().strip('"').strip("'")
+        self.chat_id = str(chat_id or "").strip().strip('"').strip("'")
+        self.enabled = enabled and bool(self.bot_token and self.chat_id)
+        self.api_url = f"https://api.telegram.org/bot{self.bot_token}/sendMessage"
 
     async def send_message(self, text: str, parse_mode: str = "HTML", link_preview: bool = True) -> bool:
         """Envía un mensaje de texto formateado."""
