@@ -1,0 +1,37 @@
+# ==============================================================================
+# HISTORIAL DE SHOWS PASADOS (MEMORIA INICIAL DEL BOT)
+# ==============================================================================
+# Agrega aquí las fechas pasadas que conozcas para que el bot tenga memoria
+# histórica de cuánto tardó cada banda en agotarse en Río Cuarto.
+
+- artist: "Desakta2"
+  event_name: "Desakta2 en Opus Costanera"
+  city: "Rio Cuarto"
+  venue: "Opus Costanera"
+  show_date: "2026-08-15"
+  sold_out: true
+  hours_to_sold_out: 18.0
+
+- artist: "Desakta2"
+  event_name: "Desakta2 - Noche de Cuarteto"
+  city: "Rio Cuarto"
+  venue: "Opus Costanera"
+  show_date: "2025-12-20"
+  sold_out: true
+  hours_to_sold_out: 4.5
+
+- artist: "Q' Lokura"
+  event_name: "Q' Lokura en Río Cuarto"
+  city: "Rio Cuarto"
+  venue: "Opus Costanera"
+  show_date: "2026-05-10"
+  sold_out: true
+  hours_to_sold_out: 3.0
+
+- artist: "Q' Lokura"
+  event_name: "Q' Lokura - Febrero Especial"
+  city: "Rio Cuarto"
+  venue: "Opus Costanera"
+  show_date: "2026-02-14"
+  sold_out: true
+  hours_to_sold_out: 24.0
