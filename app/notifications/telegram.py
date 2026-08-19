@@ -1,30 +1,41 @@
 import httpx
 import logging
-from typing import Optional
+from typing import Optional, List, Dict, Any
 
 logger = logging.getLogger(__name__)
 
+
 class TelegramNotifier:
-    """Envía notificaciones push instantáneas a Telegram."""
-    
+    """Envía notificaciones push instantáneas y enlaces de pago interactivos a Telegram."""
+
     def __init__(self, bot_token: str, chat_id: str, enabled: bool = True):
-        # Limpiar espacios accidentales o comillas
         self.bot_token = str(bot_token or "").strip().strip('"').strip("'")
         self.chat_id = str(chat_id or "").strip().strip('"').strip("'")
         self.enabled = enabled and bool(self.bot_token and self.chat_id)
         self.api_url = f"https://api.telegram.org/bot{self.bot_token}/sendMessage"
 
-    async def send_message(self, text: str, parse_mode: str = "HTML", link_preview: bool = True) -> bool:
-        """Envía un mensaje de texto formateado."""
+    async def send_message(
+        self,
+        text: str,
+        parse_mode: str = "HTML",
+        link_preview: bool = True,
+        buttons: Optional[List[List[Dict[str, str]]]] = None
+    ) -> bool:
+        """Envía un mensaje de texto formateado con soporte para botones inline interactivos."""
         if not self.enabled:
             logger.debug(f"[TELEGRAM DISABLED] Mensaje omitido: {text[:50]}...")
             return False
 
-        payload = {
+        payload: Dict[str, Any] = {
             "chat_id": self.chat_id,
             "text": text,
             "parse_mode": parse_mode
         }
+
+        if buttons:
+            payload["reply_markup"] = {
+                "inline_keyboard": buttons
+            }
 
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:
@@ -51,7 +62,7 @@ class TelegramNotifier:
         buyer_email: Optional[str] = None,
         forecast: Optional[dict] = None
     ):
-        """Plantilla preformateada para apertura de entradas o remanente con Ticket Intelligence y Tap-to-Copy."""
+        """Plantilla preformateada para apertura de entradas o remanente con Ticket Intelligence."""
         title = "🚨 <b>¡REMANENTE DISPONIBLE!</b>" if is_restock else "🎟️ <b>¡NUEVAS ENTRADAS HABILITADAS!</b>"
         location = f"\n📍 <b>Lugar:</b> {venue}" if venue else ""
         if city:
@@ -59,14 +70,14 @@ class TelegramNotifier:
 
         intel_section = ""
         if forecast:
-            prob = forecast.get("sold_out_probability_pct", 0)
+            score = forecast.get("sold_out_score", 0)
             risk = forecast.get("risk_label", "")
             est_hours = forecast.get("expected_time_to_sold_out_hours", 0)
             recom = forecast.get("recommendation", "")
             intel_section = (
-                f"\n\n📊 <b>Ticket Intelligence™ (Probabilidad de Agotamiento):</b>\n"
-                f"• <b>Probabilidad de Sold-Out:</b> {prob}% ({risk})\n"
-                f"• <b>Tiempo estimado hasta Sold-Out:</b> ~{est_hours} hs\n"
+                f"\n\n📊 <b>Ticket Intelligence™:</b>\n"
+                f"• <b>Sold-Out Score:</b> {score}/100 ({risk})\n"
+                f"• <b>Tiempo estimado hasta agotarse:</b> ~{est_hours} hs\n"
                 f"• 💡 <b>Consejo:</b> {recom}"
             )
 
@@ -88,13 +99,38 @@ class TelegramNotifier:
             f"{intel_section}"
             f"{quick_data}"
         )
-        return await self.send_message(msg)
 
-    async def notify_human_checkpoint(self, event_name: str) -> bool:
-        """Notificación de que el bot llegó a la pasarela de pago."""
+        buttons = [
+            [{"text": "🎟️ Abrir en Eden / Ticketera", "url": event_url}]
+        ]
+
+        return await self.send_message(msg, buttons=buttons)
+
+    async def notify_parallel_carts_ready(
+        self,
+        event_name: str,
+        reserved_accounts: List[Dict[str, Any]]
+    ) -> bool:
+        """Notifica cuando múltiples carritos en paralelo han bloqueado las entradas y envía botones de pago directo."""
+        total_tickets = sum(acc.get("quantity", 4) for acc in reserved_accounts)
         msg = (
-            f"⚠️ <b>ACCIÓN REQUERIDA EN TU PC</b>\n\n"
-            f"El bot seleccionó las entradas para <b>{event_name}</b> y está en la pantalla de pago.\n"
-            f"Tenés pocos minutos para ingresar tu CVV y autorizar la compra."
+            f"🎉 <b>¡CARRITOS RESERVADOS EN PARALELO!</b>\n\n"
+            f"🎤 <b>Evento:</b> {event_name}\n"
+            f"🎟️ <b>Total de entradas bloqueadas:</b> {total_tickets}\n"
+            f"⏳ <b>Tiempo de gracia:</b> Tenés entre 5 y 10 minutos para autorizar los pagos antes de que venza la reserva.\n\n"
+            f"👇 <b>Cuentas listas para pagar:</b>\n"
         )
-        return await self.send_message(msg)
+
+        buttons = []
+        for i, acc in enumerate(reserved_accounts, 1):
+            p_name = acc.get("profile_name", f"Cuenta {i}")
+            dni = acc.get("dni", "N/D")
+            qty = acc.get("quantity", 4)
+            pay_url = acc.get("payment_url")
+
+            msg += f"• 👤 <b>{p_name.upper()}</b> (DNI: <code>{dni}</code>) - {qty} entradas\n"
+
+            if pay_url:
+                buttons.append([{"text": f"💳 Pagar {p_name.upper()} ({qty} tickets)", "url": pay_url}])
+
+        return await self.send_message(msg, buttons=buttons if buttons else None)

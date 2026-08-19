@@ -6,33 +6,162 @@
 
 watchlist:
   # ----------------------------------------------------------------------------
-  # BANDA 1: Desakta2 en Río Cuarto
+  # BANDA 1: Desakta2
   # ----------------------------------------------------------------------------
-  - name: "Desakta2 en Río Cuarto"
+  - name: "Desakta2"
     provider: "eden"
     keywords:
       - "Desakta2"
       - "Desaktados"
-    city: "Rio Cuarto"
+    city: ""
     quantity: 2
-    sectors: [] # Vacío para que elijas el sector/VIP manualmente
+    sectors: []
     buyer_profile: "default"
     auto_buy: true
     notify_telegram: true
 
   # ----------------------------------------------------------------------------
-  # BANDA 2: Q' Lokura en Río Cuarto
+  # BANDA 2: Q' Lokura
   # ----------------------------------------------------------------------------
-  - name: "Q' Lokura en Río Cuarto"
+  - name: "Q' Lokura"
     provider: "eden"
     keywords:
       - "Q' Lokura"
       - "Q Lokura"
       - "Q'Lokura"
       - "Qlokura"
-    city: "Rio Cuarto"
+    city: ""
     quantity: 2
-    sectors: [] # Vacío para que elijas el sector/VIP manualmente
+    sectors: []
+    buyer_profile: "default"
+    auto_buy: true
+    notify_telegram: true
+
+  # ----------------------------------------------------------------------------
+  # BANDA 3: Eugenia Quevedo & LBC
+  # ----------------------------------------------------------------------------
+  - name: "Eugenia Quevedo & LBC"
+    provider: "eden"
+    keywords:
+      - "Eugenia Quevedo"
+      - "Euge Quevedo"
+      - "LBC"
+      - "La Banda de Carlitos"
+    city: ""
+    quantity: 2
+    sectors: []
+    buyer_profile: "default"
+    auto_buy: true
+    notify_telegram: true
+
+  # ----------------------------------------------------------------------------
+  # BANDA 4: La K'onga
+  # ----------------------------------------------------------------------------
+  - name: "La K'onga"
+    provider: "eden"
+    keywords:
+      - "La Konga"
+      - "La K'onga"
+      - "Konga"
+    city: ""
+    quantity: 2
+    sectors: []
+    buyer_profile: "default"
+    auto_buy: true
+    notify_telegram: true
+
+  # ----------------------------------------------------------------------------
+  # BANDA 5: Ulises Bueno
+  # ----------------------------------------------------------------------------
+  - name: "Ulises Bueno"
+    provider: "eden"
+    keywords:
+      - "Ulises Bueno"
+      - "Ulises"
+    city: ""
+    quantity: 2
+    sectors: []
+    buyer_profile: "default"
+    auto_buy: true
+    notify_telegram: true
+
+  # ----------------------------------------------------------------------------
+  # BANDA 6: Dale Q' Va
+  # ----------------------------------------------------------------------------
+  - name: "Dale Q' Va"
+    provider: "eden"
+    keywords:
+      - "Dale Q' Va"
+      - "Dale Q Va"
+      - "Dale Q'Va"
+      - "Dale Qva"
+    city: ""
+    quantity: 2
+    sectors: []
+    buyer_profile: "default"
+    auto_buy: true
+    notify_telegram: true
+
+  # ----------------------------------------------------------------------------
+  # BANDA 7: Simón Aguirre
+  # ----------------------------------------------------------------------------
+  - name: "Simón Aguirre"
+    provider: "eden"
+    keywords:
+      - "Simón Aguirre"
+      - "Simon Aguirre"
+    city: ""
+    quantity: 2
+    sectors: []
+    buyer_profile: "default"
+    auto_buy: true
+    notify_telegram: true
+
+  # ----------------------------------------------------------------------------
+  # BANDA 8: Luck Ra
+  # ----------------------------------------------------------------------------
+  - name: "Luck Ra"
+    provider: "eden"
+    keywords:
+      - "Luck Ra"
+      - "LuckRa"
+    city: ""
+    quantity: 2
+    sectors: []
+    buyer_profile: "default"
+    auto_buy: true
+    notify_telegram: true
+
+  # ----------------------------------------------------------------------------
+  # BANDA 9: La Mona Jiménez
+  # ----------------------------------------------------------------------------
+  - name: "La Mona Jiménez"
+    provider: "eden"
+    keywords:
+      - "La Mona Jimenez"
+      - "La Mona"
+      - "Mona Jimenez"
+      - "Bum Bum"
+    city: ""
+    quantity: 2
+    sectors: []
+    buyer_profile: "default"
+    auto_buy: true
+    notify_telegram: true
+
+  # ----------------------------------------------------------------------------
+  # BANDA 10: El Loco Amato
+  # ----------------------------------------------------------------------------
+  - name: "El Loco Amato"
+    provider: "eden"
+    keywords:
+      - "Loco Amato"
+      - "El Loco Amato"
+      - "Cristian Amato"
+      - "Amato"
+    city: ""
+    quantity: 2
+    sectors: []
     buyer_profile: "default"
     auto_buy: true
     notify_telegram: true

@@ -1,0 +1,724 @@
+research_meta:
+  dataset_name: Ticket Assistant - Cuarteto Cordoba historical research
+  research_date: '2026-08-17'
+  scope: Shows 2025-2026, foco Q' Lokura y DesaKTa2; contraste con La Konga, Euge Quevedo/LBC, La Mona Jimenez y Luck Ra.
+  methodology:
+  - Priorizar ticketera oficial, sitio oficial del artista, venue/productora y prensa reconocida.
+  - No inferir sale_start_at ni hours_to_sold_out sin timestamps publicamente verificables.
+  - Usar null para datos no demostrables.
+  - Distinguir CONFIRMED, CONFIRMED_SERIES, PARTIAL y UNKNOWN.
+  - Excluir eventos cancelados/reprogramados del backtest de demanda salvo tratamiento especifico.
+  quality_scale:
+    CONFIRMED: Evidencia directa para el evento/campo concreto.
+    CONFIRMED_SERIES: El evento pertenece a una serie expresamente documentada como agotada; no se recupero un post individual
+      de sold-out.
+    PARTIAL: Hay evidencia util pero no suficiente para fijar el valor exacto.
+    UNKNOWN: No se encontro evidencia suficientemente defendible.
+  important_note: hours_to_sold_out debe calcularse solo cuando sale_start_at y sold_out_at sean timestamps verificables.
+    En esta version se preserva null en vez de inventar valores.
+venues:
+- id: plaza_de_la_musica
+  name: Plaza de la Música
+  city: Cordoba
+  province: Cordoba
+  capacity_estimate: null
+  capacity_quality: UNKNOWN
+  venue_type: ESTADIO_CUBIERTO
+  notes: El aforo efectivo varia segun configuracion; no se fijo una cifra unica sin fuente oficial explicita para cada montaje.
+- id: opus_costanera
+  name: Opus Costanera
+  city: Rio Cuarto
+  province: Cordoba
+  capacity_estimate: null
+  capacity_quality: UNKNOWN
+  venue_type: OUTDOOR_MULTIESPACIO
+- id: forja
+  name: Forja Centro de Eventos
+  city: Cordoba
+  province: Cordoba
+  capacity_estimate: 10000
+  capacity_quality: CONFIRMED
+  venue_type: ESTADIO_CUBIERTO
+  notes: Turismo Cordoba informa capacidad de 10.000 personas para la nave central; el sitio actual de Forja informa maximo
+    12.000 segun configuracion.
+- id: estadio_atenas
+  name: Estadio Atenas
+  city: Cordoba
+  province: Cordoba
+  capacity_estimate: 6600
+  capacity_quality: CONFIRMED
+  venue_type: ESTADIO_CUBIERTO
+  notes: Capacidad maxima informada por Municipalidad de Cordoba para espectaculos/eventos.
+- id: aeropuerto_regional_villa_maria
+  name: Aeropuerto Regional
+  city: Villa Maria
+  province: Cordoba
+  capacity_estimate: null
+  capacity_quality: UNKNOWN
+  venue_type: OUTDOOR
+- id: anfiteatro_villa_maria
+  name: Anfiteatro Municipal de Villa Maria
+  city: Villa Maria
+  province: Cordoba
+  capacity_estimate: null
+  capacity_quality: UNKNOWN
+  venue_type: ANFITEATRO
+artists:
+- id: q_lokura
+  name: Q' Lokura
+  genre: CUARTETO
+  default_sold_out_rate: null
+- id: desakta2
+  name: DesaKTa2
+  genre: CUARTETO
+  default_sold_out_rate: null
+- id: la_konga
+  name: La Konga
+  genre: CUARTETO
+  default_sold_out_rate: null
+- id: euge_quevedo_lbc
+  name: Euge Quevedo / La Banda de Carlitos
+  genre: CUARTETO
+  default_sold_out_rate: null
+- id: la_mona_jimenez
+  name: La Mona Jimenez
+  genre: CUARTETO
+  default_sold_out_rate: null
+- id: luck_ra
+  name: Luck Ra
+  genre: CUARTETO_POP
+  default_sold_out_rate: null
+events:
+- artist_id: q_lokura
+  venue_id: plaza_de_la_musica
+  event_name: Q' Lokura en Plaza de la Música
+  event_date: '2025-07-19'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/q-lokura---plaza-de-la-musica---190725
+  source_sale_url: null
+  source_sold_out_url: null
+  notes: Fecha y venue confirmados por pagina historica de Eden. No se fijo sold_out sin evidencia individual suficiente.
+- artist_id: q_lokura
+  venue_id: plaza_de_la_musica
+  event_name: Q' Lokura en Plaza de la Música
+  event_date: '2025-09-20'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/q-lokura-200925
+  source_sale_url: null
+  source_sold_out_url: null
+  notes: Fecha y venue confirmados por pagina historica de Eden. No se fijo sold_out sin evidencia individual suficiente.
+- artist_id: q_lokura
+  venue_id: plaza_de_la_musica
+  event_name: Q' Lokura en Plaza de la Música
+  event_date: '2025-11-01'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/q-lokura20250111
+  source_sale_url: null
+  source_sold_out_url: null
+  notes: Fecha y venue confirmados por pagina historica de Eden. No se fijo sold_out sin evidencia individual suficiente.
+- artist_id: q_lokura
+  venue_id: plaza_de_la_musica
+  event_name: Q' Lokura en Plaza de la Música
+  event_date: '2026-01-03'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/q-lokura-030126
+  source_sale_url: null
+  source_sold_out_url: null
+  notes: Fecha y venue confirmados por pagina historica de Eden. No se fijo sold_out sin evidencia individual suficiente.
+- artist_id: q_lokura
+  venue_id: plaza_de_la_musica
+  event_name: Q' Lokura en Plaza de la Música
+  event_date: '2026-02-14'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/q-lokura-140226
+  source_sale_url: null
+  source_sold_out_url: null
+  notes: Fecha y venue confirmados por pagina historica de Eden. No se fijo sold_out sin evidencia individual suficiente.
+- artist_id: q_lokura
+  venue_id: plaza_de_la_musica
+  event_name: Q' Lokura en Plaza de la Música
+  event_date: '2026-02-28'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/q-lokura-280226
+  source_sale_url: null
+  source_sold_out_url: null
+  notes: Fecha y venue confirmados por pagina historica de Eden. No se fijo sold_out sin evidencia individual suficiente.
+- artist_id: q_lokura
+  venue_id: plaza_de_la_musica
+  event_name: Q' Lokura en Plaza de la Música
+  event_date: '2026-03-21'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/q-lokura-210326
+  source_sale_url: null
+  source_sold_out_url: null
+  notes: Fecha y venue confirmados por pagina historica de Eden. No se fijo sold_out sin evidencia individual suficiente.
+- artist_id: q_lokura
+  venue_id: plaza_de_la_musica
+  event_name: Q' Lokura en Plaza de la Música
+  event_date: '2026-04-18'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/q-lokura-180426
+  source_sale_url: null
+  source_sold_out_url: null
+  notes: Fecha y venue confirmados por pagina historica de Eden. No se fijo sold_out sin evidencia individual suficiente.
+- artist_id: q_lokura
+  venue_id: plaza_de_la_musica
+  event_name: Q' Lokura - En Movimiento Tour - Plaza de la Música
+  event_date: '2026-06-27'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: 4
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/q-lokura-270626
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/reel/CpFkTVlO30n/
+  notes: Evidencia indexada muestra 'SOLD OUT' para Plaza de la Música del 27 de junio. Eden confirma la fecha/evento.
+- artist_id: q_lokura
+  venue_id: plaza_de_la_musica
+  event_name: Q' Lokura - En Movimiento Tour - Plaza de la Música
+  event_date: '2026-07-25'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: 4
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/q-lokura-250726
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/p/DXhC59ZERQv/
+  notes: Eden confirma evento, venue y limite maximo de 4 entradas. Evidencia social indexada reporta que la fecha se agoto.
+- artist_id: desakta2
+  venue_id: plaza_de_la_musica
+  event_name: DesaKTa2 en Plaza de la Música
+  event_date: '2025-03-15'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED_SERIES
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/desakta2-150325
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/reel/DT-ke12DkPp/
+  notes: Fecha/venue confirmados por Eden. Clasificado sold-out por pertenecer a la secuencia documentada de funciones agotadas
+    de DesaKTa2 en Plaza; no se recupero timestamp individual de agotamiento.
+- artist_id: desakta2
+  venue_id: plaza_de_la_musica
+  event_name: DesaKTa2 en Plaza de la Música
+  event_date: '2025-05-10'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED_SERIES
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/desakta2-100525
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/reel/DT-ke12DkPp/
+  notes: Fecha/venue confirmados por Eden. Clasificado sold-out por pertenecer a la secuencia documentada de funciones agotadas
+    de DesaKTa2 en Plaza; no se recupero timestamp individual de agotamiento.
+- artist_id: desakta2
+  venue_id: plaza_de_la_musica
+  event_name: DesaKTa2 en Plaza de la Música
+  event_date: '2025-07-12'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED_SERIES
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/desakta2---plaza-de-la-musica---120725
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/reel/DT-ke12DkPp/
+  notes: Fecha/venue confirmados por Eden. Clasificado sold-out por pertenecer a la secuencia documentada de funciones agotadas
+    de DesaKTa2 en Plaza; no se recupero timestamp individual de agotamiento.
+- artist_id: desakta2
+  venue_id: plaza_de_la_musica
+  event_name: DesaKTa2 en Plaza de la Música
+  event_date: '2025-11-15'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED_SERIES
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/desakta2-15112025
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/reel/DT-ke12DkPp/
+  notes: Fecha/venue confirmados por Eden. Clasificado sold-out por pertenecer a la secuencia documentada de funciones agotadas
+    de DesaKTa2 en Plaza; no se recupero timestamp individual de agotamiento.
+- artist_id: desakta2
+  venue_id: plaza_de_la_musica
+  event_name: DesaKTa2 en Plaza de la Música
+  event_date: '2026-01-24'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED_SERIES
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/desakta2-240126
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/reel/DT-ke12DkPp/
+  notes: Fecha/venue confirmados por Eden. Clasificado sold-out por pertenecer a la secuencia documentada de funciones agotadas
+    de DesaKTa2 en Plaza; no se recupero timestamp individual de agotamiento.
+- artist_id: desakta2
+  venue_id: plaza_de_la_musica
+  event_name: DesaKTa2 en Plaza de la Música
+  event_date: '2026-03-07'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED_SERIES
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/desakta2-070306
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/reel/DT-ke12DkPp/
+  notes: Fecha/venue confirmados por Eden. Clasificado sold-out por pertenecer a la secuencia documentada de funciones agotadas
+    de DesaKTa2 en Plaza; no se recupero timestamp individual de agotamiento.
+- artist_id: desakta2
+  venue_id: plaza_de_la_musica
+  event_name: DesaKTa2 en Plaza de la Música
+  event_date: '2026-04-11'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED_SERIES
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/desakta2-110426
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/reel/DT-ke12DkPp/
+  notes: Fecha/venue confirmados por Eden. Clasificado sold-out por pertenecer a la secuencia documentada de funciones agotadas
+    de DesaKTa2 en Plaza; no se recupero timestamp individual de agotamiento.
+- artist_id: desakta2
+  venue_id: plaza_de_la_musica
+  event_name: DesaKTa2 en Plaza de la Música
+  event_date: '2026-05-24'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED_SERIES
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/desakta2-240526
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/reel/DT-ke12DkPp/
+  notes: Fecha/venue confirmados por Eden. Clasificado sold-out por pertenecer a la secuencia documentada de funciones agotadas
+    de DesaKTa2 en Plaza; no se recupero timestamp individual de agotamiento.
+- artist_id: desakta2
+  venue_id: plaza_de_la_musica
+  event_name: DesaKTa2 en Plaza de la Música
+  event_date: '2026-06-20'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/desakta2-200626
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/reel/DVj28Kjj3Em/
+  notes: Eden confirma fecha/venue; evidencia indexada de DesaKTa2 muestra 'SOLD OUT' para Plaza del 20 de junio.
+- artist_id: desakta2
+  venue_id: plaza_de_la_musica
+  event_name: DesaKTa2 en Plaza de la Música
+  event_date: '2026-07-18'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: 4
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED_SERIES
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/desakta2-180726
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/reel/DT-ke12DkPp/
+  notes: Fecha/venue confirmados por Eden. Clasificado sold-out por pertenecer a la secuencia documentada de funciones agotadas
+    de DesaKTa2 en Plaza; no se recupero timestamp individual de agotamiento.
+- artist_id: desakta2
+  venue_id: plaza_de_la_musica
+  event_name: DesaKTa2 en Plaza de la Música
+  event_date: '2026-07-19'
+  event_status: CANCELLED
+  exclude_from_backtest: true
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/desakta2-190726
+  source_sale_url: null
+  source_sold_out_url: https://www.instagram.com/p/DRVOCHZEn06/
+  notes: Existio pagina de Eden, pero una comunicacion indexada de Almenara informa que el show programado para el 19 de julio
+    fue dado de baja. No usar como observacion normal de demanda.
+- artist_id: desakta2
+  venue_id: opus_costanera
+  event_name: DesaKTa2 en Opus Costanera
+  event_date: '2026-03-22'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/desakta2-220326
+  source_sale_url: https://www.instagram.com/p/DVo3JAoEeGe/
+  source_sold_out_url: null
+  notes: Fecha, venue y venta confirmados. No se encontro evidencia suficiente de agotamiento.
+- artist_id: desakta2
+  venue_id: opus_costanera
+  event_name: DesaKTa2 en Opus Costanera
+  event_date: '2026-08-15'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: 22000
+  ticket_limit: 4
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: CONFIRMED
+  source_event_url: https://www.edenentradas.ar/event/desakta2-150826
+  source_sale_url: https://www.instagram.com/opuscostanera/
+  source_sold_out_url: null
+  notes: Eden indexo GENERAL Adulto $22.000 y maximo 4 entradas por operacion. No se encontro evidencia suficientemente robusta
+    para marcar sold-out.
+- artist_id: la_konga
+  venue_id: opus_costanera
+  event_name: La Konga en Opus Costanera
+  event_date: '2025-09-06'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/la-konga
+  source_sale_url: https://opuscostanera.com.ar/evento/la-konga-6/
+  source_sold_out_url: null
+  notes: Fecha/venue confirmados por Eden y Opus. Opus confirma entradas disponibles en Eden/boleteria/Newen. Sold-out no
+    demostrado.
+- artist_id: euge_quevedo_lbc
+  venue_id: aeropuerto_regional_villa_maria
+  event_name: Euge Quevedo y La Banda de Carlitos - Villa Maria
+  event_date: '2025-10-16'
+  event_status: HELD
+  exclude_from_backtest: false
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: UNKNOWN
+  source_event_url: https://www.edenentradas.ar/event/eugenia-quevedo-lbc-161025
+  source_sale_url: null
+  source_sold_out_url: null
+  notes: Evento y venue confirmados por Eden. Sold-out, precio e inicio exacto de venta no demostrados en fuentes recuperadas.
+- artist_id: luck_ra
+  venue_id: anfiteatro_villa_maria
+  event_name: Festival Internacional de Peñas de Villa María 2026 - noche con Luck Ra
+  event_date: null
+  event_status: HELD
+  exclude_from_backtest: true
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: null
+  hours_to_sold_out: null
+  nominal_price: 35000
+  ticket_limit: null
+  event_quality: PARTIAL
+  sale_start_quality: UNKNOWN
+  sold_out_quality: UNKNOWN
+  price_quality: PARTIAL
+  source_event_url: https://www.edenentradas.ar/event/festival-internacional-de-penas-2026-wh-d3
+  source_sale_url: https://www.lanacion.com.ar/que-sale/morat-luck-ra-y-q-lokura-cuando-es-el-festival-de-penas-de-villa-maria-2026-y-como-comprar-las-nid22122025/
+  source_sold_out_url: null
+  notes: Registro de contraste. La fuente de prensa confirma festival 6-10/02/2026 y valores desde $35.000, pero no se asigna
+    una noche exacta a Luck Ra en este registro; excluir del modelado por fecha hasta completar grilla.
+- artist_id: la_mona_jimenez
+  venue_id: forja
+  event_name: La Mona Jimenez en Forja - fecha originalmente prevista
+  event_date: '2026-03-14'
+  event_status: REPROGRAMMED
+  exclude_from_backtest: true
+  sale_start_at: null
+  sale_announced_at: null
+  last_tickets_at: null
+  sold_out_at: null
+  sold_out: true
+  hours_to_sold_out: null
+  nominal_price: null
+  ticket_limit: null
+  event_quality: CONFIRMED
+  sale_start_quality: UNKNOWN
+  sold_out_quality: CONFIRMED
+  price_quality: UNKNOWN
+  source_event_url: https://hoydia.com.ar/espectaculos/show-mona-jimenez-forja/
+  source_sale_url: null
+  source_sold_out_url: https://hoydia.com.ar/espectaculos/show-mona-jimenez-forja/
+  notes: La funcion del 14/03/2026 fue reprogramada. La prensa reporta localidades agotadas / demanda por encima de capacidad
+    permitida. Debe modelarse como evento reprogramado, no como show efectivamente realizado.
+source_registry:
+- url: https://www.edenentradas.ar/
+  type: TICKETING_OFFICIAL
+  use: Fechas, venues, condiciones, limites y precios cuando quedan indexados.
+- url: https://www.qlokura.tv/
+  type: ARTIST_TICKETING_OFFICIAL
+  use: Agenda/precios propios de Q' Lokura.
+- url: https://www.instagram.com/qlokuraok/
+  type: ARTIST_SOCIAL_OFFICIAL
+  use: Estados sold-out, ultimas entradas y anuncios.
+- url: https://www.instagram.com/desakta2ok/
+  type: ARTIST_SOCIAL_OFFICIAL
+  use: Estados sold-out y secuencia de Plazas agotadas.
+- url: https://opuscostanera.com.ar/
+  type: VENUE_OFFICIAL
+  use: Agenda y disponibilidad/venta de shows en Rio Cuarto.
+- url: https://turismo.cordoba.gob.ar/forja-centro-de-eventos/
+  type: GOVERNMENT
+  use: Capacidad de Forja.
+- url: https://cordoba.gob.ar/la-ciudad-tiene-un-nuevo-estadio-passerini-y-llaryora-visitaron-la-historica-y-renovada-sede-de-atenas/
+  type: GOVERNMENT
+  use: Capacidad del Estadio Atenas.
+- url: https://hoydia.com.ar/espectaculos/show-mona-jimenez-forja/
+  type: PRESS
+  use: Reprogramacion y agotamiento del show de La Mona en Forja.

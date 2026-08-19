@@ -18,8 +18,17 @@ class EdenProvider(TicketProvider):
             timeout=10.0,
             headers={
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                "Accept-Language": "es-ES,es;q=0.9",
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8"
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                "Accept-Language": "es-ES,es;q=0.9,en;q=0.8",
+                "Accept-Encoding": "gzip, deflate, br",
+                "Sec-Ch-Ua": '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+                "Sec-Ch-Ua-Mobile": "?0",
+                "Sec-Ch-Ua-Platform": '"Windows"',
+                "Sec-Fetch-Dest": "document",
+                "Sec-Fetch-Mode": "navigate",
+                "Sec-Fetch-Site": "none",
+                "Sec-Fetch-User": "?1",
+                "Upgrade-Insecure-Requests": "1"
             },
             follow_redirects=True
         )
@@ -28,6 +37,10 @@ class EdenProvider(TicketProvider):
     @property
     def name(self) -> str:
         return "eden"
+
+    @property
+    def domains(self) -> List[str]:
+        return ["edenentradas.ar", "www.edenentradas.ar"]
 
     async def get_event(self, url_or_id: str) -> Event:
         """Descarga e interpreta la página del evento de Eden."""
@@ -40,8 +53,9 @@ class EdenProvider(TicketProvider):
                 raise EventNotFoundError(f"Evento no encontrado en {url}")
             elif response.status_code == 429:
                 raise RateLimitError("Rate limit excedido en Eden Entradas (HTTP 429)")
-            elif response.status_code == 403:
-                raise BlockedError("Acceso bloqueado en Eden Entradas (HTTP 403 / Cloudflare / WAF)")
+            elif response.status_code in (403, 405):
+                logger.warning(f"Desafío o bloqueo anti-bot detectado en Eden (HTTP {response.status_code}). Pausando peticiones...")
+                raise BlockedError(f"Acceso temporalmente restringido por protección CloudFront/WAF (HTTP {response.status_code})")
             elif response.status_code != 200:
                 logger.warning(f"Respuesta no estándar de Eden: {response.status_code}")
 

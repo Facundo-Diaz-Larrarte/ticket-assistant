@@ -9,8 +9,9 @@ echo Se abrira una ventana de navegador. Inicia sesion con tu cuenta
 echo de Eden y luego presiona Enter aqui para guardar tu sesion.
 echo.
 cd /d "%~dp0"
-python -m app.main login
-if errorlevel 1 (
+if exist "%LOCALAPPDATA%\Python\pythoncore-3.14-64\python.exe" (
     "%LOCALAPPDATA%\Python\pythoncore-3.14-64\python.exe" -m app.main login
+) else (
+    py -m app.main login 2>nul || python -m app.main login
 )
 pause

@@ -49,27 +49,39 @@ class EdenCheckoutAssistant:
             if buyer_profile:
                 await self._fill_buyer_data(buyer_profile)
 
-            # 6. Human Checkpoint (Detención de seguridad)
+            # 6. Intentar capturar URL de pasarela o checkout actual
+            payment_url = self.page.url
+            try:
+                # Si hay iframe o link de MercadoPago/pasarela
+                mp_link = self.page.locator('a[href*="mercadopago"], a[href*="checkout"], iframe[src*="mercadopago"]').first
+                if await mp_link.is_visible(timeout=1000):
+                    href = await mp_link.get_attribute("href") or await mp_link.get_attribute("src")
+                    if href:
+                        payment_url = href
+            except Exception:
+                pass
+
+            # 7. Human Checkpoint (Detención de seguridad)
             self.state = BrowserState.USER_ACTION_REQUIRED
             logger.info("==================================================")
-            logger.info("🛑 HUMAN CHECKPOINT ALCANZADO: PANTALLA DE PAGO")
-            logger.info("Por favor, ingresa tu código de seguridad / autoriza la compra en la ventana abierta.")
+            logger.info("🛑 HUMAN CHECKPOINT ALCANZADO: PANTALLA DE PAGO LISTA")
+            logger.info(f"URL de Pago / Carrito: {payment_url}")
             logger.info("==================================================")
-            
-            # Alarma sonora continua
-            for _ in range(3):
-                await play_alert_sound_async(frequency=1200, duration_ms=600)
-                await asyncio.sleep(0.3)
 
-            return BrowserState.USER_ACTION_REQUIRED
+            # Alarma sonora
+            for _ in range(2):
+                await play_alert_sound_async(frequency=1200, duration_ms=500)
+                await asyncio.sleep(0.2)
+
+            return BrowserState.USER_ACTION_REQUIRED, payment_url
 
         except HumanActionRequiredException:
             self.state = BrowserState.USER_ACTION_REQUIRED
-            return self.state
+            return self.state, self.page.url
         except Exception as e:
             logger.error(f"Error en flujo de compra asistida: {e}", exc_info=True)
             self.state = BrowserState.FAILED
-            return self.state
+            return self.state, None
 
     async def _click_buy_button(self):
         """Intenta hacer click en el botón de comprar usando la lista de selectores tolerantes."""

@@ -6,10 +6,9 @@ echo     INICIANDO TICKET ASSISTANT MONITOR 24/7
 echo ===================================================
 echo.
 cd /d "%~dp0"
-python -m app.main monitor
-if errorlevel 1 (
-    echo.
-    echo Probando con ruta directa de Python...
+if exist "%LOCALAPPDATA%\Python\pythoncore-3.14-64\python.exe" (
     "%LOCALAPPDATA%\Python\pythoncore-3.14-64\python.exe" -m app.main monitor
+) else (
+    py -m app.main monitor 2>nul || python -m app.main monitor
 )
 pause

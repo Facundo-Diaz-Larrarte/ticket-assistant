@@ -19,13 +19,7 @@ class EdenScanner:
     async def fetch_home_events(self) -> List[Event]:
         """Extrae todos los eventos listados en la página principal de Eden Entradas."""
         try:
-            resp = await self.client.get(
-                self.BASE_URL,
-                headers={
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                    "Accept-Language": "es-ES,es;q=0.9",
-                }
-            )
+            resp = await self.client.get(self.BASE_URL)
             if resp.status_code != 200:
                 logger.warning(f"No se pudo cargar la home de Eden (status {resp.status_code})")
                 return []

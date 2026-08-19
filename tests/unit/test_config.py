@@ -3,7 +3,7 @@ from app.core.config import load_settings, load_events_config, load_buyer_profil
 def test_load_settings():
     settings = load_settings("config/settings.yaml")
     assert settings.app.name == "Ticket Assistant"
-    assert settings.monitoring.default_interval_seconds == 5.0
+    assert settings.monitoring.default_interval_seconds == 15.0
     assert settings.sound.enabled is True
 
 def test_load_events_config():

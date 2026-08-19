@@ -1,37 +1,264 @@
 # ==============================================================================
-# HISTORIAL DE SHOWS PASADOS (MEMORIA INICIAL DEL BOT)
+# DATASET HISTÓRICO SEMILLA (TICKET ASSISTANT V2)
 # ==============================================================================
-# Agrega aquí las fechas pasadas que conozcas para que el bot tenga memoria
-# histórica de cuánto tardó cada banda en agotarse en Río Cuarto.
+# Estructura relacional de Venues, Artistas y Eventos Pasados para alimentar el
+# SoldOutScore, LocalScore y Bayesian Smoothing.
 
-- artist: "Desakta2"
-  event_name: "Desakta2 en Opus Costanera"
-  city: "Rio Cuarto"
-  venue: "Opus Costanera"
-  show_date: "2026-08-15"
-  sold_out: true
-  hours_to_sold_out: 18.0
+venues:
+  - id: "opus_costanera"
+    name: "Opus Costanera"
+    city: "Rio Cuarto"
+    province: "Cordoba"
+    capacity_estimate: 3500
+    venue_type: "OUTDOOR"
 
-- artist: "Desakta2"
-  event_name: "Desakta2 - Noche de Cuarteto"
-  city: "Rio Cuarto"
-  venue: "Opus Costanera"
-  show_date: "2025-12-20"
-  sold_out: true
-  hours_to_sold_out: 4.5
+  - id: "plaza_de_la_musica"
+    name: "Plaza de la Música"
+    city: "Cordoba"
+    province: "Cordoba"
+    capacity_estimate: 6000
+    venue_type: "ESTADIO_CUBIERTO"
 
-- artist: "Q' Lokura"
-  event_name: "Q' Lokura en Río Cuarto"
-  city: "Rio Cuarto"
-  venue: "Opus Costanera"
-  show_date: "2026-05-10"
-  sold_out: true
-  hours_to_sold_out: 3.0
+  - id: "forja"
+    name: "Complejo Forja"
+    city: "Cordoba"
+    province: "Cordoba"
+    capacity_estimate: 15000
+    venue_type: "ESTADIO_CUBIERTO"
 
-- artist: "Q' Lokura"
-  event_name: "Q' Lokura - Febrero Especial"
-  city: "Rio Cuarto"
-  venue: "Opus Costanera"
-  show_date: "2026-02-14"
-  sold_out: true
-  hours_to_sold_out: 24.0
+  - id: "anfiteatro_villa_maria"
+    name: "Anfiteatro Municipal de Villa María"
+    city: "Villa Maria"
+    province: "Cordoba"
+    capacity_estimate: 12000
+    venue_type: "ANFITEATRO"
+
+  - id: "club_atenas"
+    name: "Estadio Atenas"
+    city: "Cordoba"
+    province: "Cordoba"
+    capacity_estimate: 3500
+    venue_type: "ESTADIO_CUBIERTO"
+
+  - id: "sociedad_belgrano"
+    name: "Sociedad Belgrano"
+    city: "Cordoba"
+    province: "Cordoba"
+    capacity_estimate: 5000
+    venue_type: "CLUB"
+
+  - id: "estadio_kempes"
+    name: "Estadio Mario Alberto Kempes"
+    city: "Cordoba"
+    province: "Cordoba"
+    capacity_estimate: 45000
+    venue_type: "ESTADIO"
+
+artists:
+  - id: "q_lokura"
+    name: "Q' Lokura"
+    genre: "CUARTETO"
+    default_sold_out_rate: 0.92
+
+  - id: "desakta2"
+    name: "DesaKTa2"
+    genre: "CUARTETO"
+    default_sold_out_rate: 0.90
+
+  - id: "la_konga"
+    name: "La K'onga"
+    genre: "CUARTETO"
+    default_sold_out_rate: 0.88
+
+  - id: "euge_quevedo_lbc"
+    name: "Euge Quevedo y LBC"
+    genre: "CUARTETO"
+    default_sold_out_rate: 0.94
+
+  - id: "la_mona_jimenez"
+    name: "La Mona Jiménez"
+    genre: "CUARTETO"
+    default_sold_out_rate: 0.98
+
+  - id: "luck_ra"
+    name: "Luck Ra"
+    genre: "CUARTETO"
+    default_sold_out_rate: 0.89
+
+events:
+  # --- Q' LOKURA ---
+  - artist_id: "q_lokura"
+    venue_id: "opus_costanera"
+    event_name: "Q' Lokura en Río Cuarto"
+    event_date: "2026-05-10"
+    sale_start_at: "2026-05-01 12:00:00"
+    sold_out: true
+    hours_to_sold_out: 3.0
+    nominal_price: 12000
+
+  - artist_id: "q_lokura"
+    venue_id: "opus_costanera"
+    event_name: "Q' Lokura - Febrero Especial"
+    event_date: "2026-02-14"
+    sale_start_at: "2026-02-01 10:00:00"
+    sold_out: true
+    hours_to_sold_out: 14.0
+    nominal_price: 10000
+
+  - artist_id: "q_lokura"
+    venue_id: "plaza_de_la_musica"
+    event_name: "Q' Lokura - Noche de Gala Córdoba"
+    event_date: "2026-04-18"
+    sale_start_at: "2026-04-05 10:00:00"
+    sold_out: true
+    hours_to_sold_out: 6.0
+    nominal_price: 14000
+
+  - artist_id: "q_lokura"
+    venue_id: "forja"
+    event_name: "Q' Lokura en Forja - Baile del Año"
+    event_date: "2025-11-22"
+    sale_start_at: "2025-11-01 12:00:00"
+    sold_out: true
+    hours_to_sold_out: 36.0
+    nominal_price: 9000
+
+  # --- DESAKTA2 ---
+  - artist_id: "desakta2"
+    venue_id: "opus_costanera"
+    event_name: "DesaKTa2 en Opus Costanera"
+    event_date: "2026-08-15"
+    sale_start_at: "2026-08-01 12:00:00"
+    sold_out: true
+    hours_to_sold_out: 18.0
+    nominal_price: 11000
+
+  - artist_id: "desakta2"
+    venue_id: "opus_costanera"
+    event_name: "DesaKTa2 - Noche de Cuarteto Río Cuarto"
+    event_date: "2025-12-20"
+    sale_start_at: "2025-12-10 10:00:00"
+    sold_out: true
+    hours_to_sold_out: 4.5
+    nominal_price: 8500
+
+  - artist_id: "desakta2"
+    venue_id: "club_atenas"
+    event_name: "DesaKTa2 en Atenas"
+    event_date: "2026-03-27"
+    sale_start_at: "2026-03-15 12:00:00"
+    sold_out: true
+    hours_to_sold_out: 8.0
+    nominal_price: 10000
+
+  - artist_id: "desakta2"
+    venue_id: "plaza_de_la_musica"
+    event_name: "DesaKTa2 - Fiesta Desakada Córdoba"
+    event_date: "2026-06-12"
+    sale_start_at: "2026-06-01 10:00:00"
+    sold_out: true
+    hours_to_sold_out: 12.0
+    nominal_price: 13000
+
+  # --- EUGE QUEVEDO Y LBC ---
+  - artist_id: "euge_quevedo_lbc"
+    venue_id: "opus_costanera"
+    event_name: "Euge Quevedo y LBC en Río Cuarto"
+    event_date: "2026-03-08"
+    sale_start_at: "2026-02-20 12:00:00"
+    sold_out: true
+    hours_to_sold_out: 2.5
+    nominal_price: 12000
+
+  - artist_id: "euge_quevedo_lbc"
+    venue_id: "sociedad_belgrano"
+    event_name: "La Banda de Carlitos y Euge Quevedo en Sociedad Belgrano"
+    event_date: "2026-05-23"
+    sale_start_at: "2026-05-10 10:00:00"
+    sold_out: true
+    hours_to_sold_out: 5.0
+    nominal_price: 11000
+
+  - artist_id: "euge_quevedo_lbc"
+    venue_id: "plaza_de_la_musica"
+    event_name: "Euge Quevedo - Noche de Cuarteto Córdoba"
+    event_date: "2026-07-17"
+    sale_start_at: "2026-07-01 12:00:00"
+    sold_out: true
+    hours_to_sold_out: 7.0
+    nominal_price: 14000
+
+  # --- LA MONA JIMÉNEZ ---
+  - artist_id: "la_mona_jimenez"
+    venue_id: "forja"
+    event_name: "La Mona Jiménez - Baile de Gala en Forja"
+    event_date: "2026-01-11"
+    sale_start_at: "2025-12-28 10:00:00"
+    sold_out: true
+    hours_to_sold_out: 1.5
+    nominal_price: 18000
+
+  - artist_id: "la_mona_jimenez"
+    venue_id: "sociedad_belgrano"
+    event_name: "La Mona en Sociedad Belgrano"
+    event_date: "2026-04-30"
+    sale_start_at: "2026-04-15 12:00:00"
+    sold_out: true
+    hours_to_sold_out: 0.8
+    nominal_price: 16000
+
+  - artist_id: "la_mona_jimenez"
+    venue_id: "estadio_kempes"
+    event_name: "Festival Bum Bum 2026 - Kempes"
+    event_date: "2026-01-17"
+    sale_start_at: "2025-11-15 10:00:00"
+    sold_out: true
+    hours_to_sold_out: 48.0
+    nominal_price: 25000
+
+  # --- LA KONGA ---
+  - artist_id: "la_konga"
+    venue_id: "opus_costanera"
+    event_name: "La K'onga en Río Cuarto"
+    event_date: "2026-01-24"
+    sale_start_at: "2026-01-10 12:00:00"
+    sold_out: true
+    hours_to_sold_out: 5.0
+    nominal_price: 13000
+
+  - artist_id: "la_konga"
+    venue_id: "anfiteatro_villa_maria"
+    event_name: "La K'onga en Villa María"
+    event_date: "2026-02-09"
+    sale_start_at: "2026-01-05 10:00:00"
+    sold_out: true
+    hours_to_sold_out: 28.0
+    nominal_price: 15000
+
+  - artist_id: "la_konga"
+    venue_id: "plaza_de_la_musica"
+    event_name: "La K'onga - Noche de Cuarteto Córdoba"
+    event_date: "2026-06-20"
+    sale_start_at: "2026-06-05 12:00:00"
+    sold_out: true
+    hours_to_sold_out: 9.0
+    nominal_price: 15000
+
+  # --- LUCK RA ---
+  - artist_id: "luck_ra"
+    venue_id: "plaza_de_la_musica"
+    event_name: "Luck Ra - El Baile Más Grande del País"
+    event_date: "2026-05-30"
+    sale_start_at: "2026-05-02 12:00:00"
+    sold_out: true
+    hours_to_sold_out: 4.0
+    nominal_price: 16000
+
+  - artist_id: "luck_ra"
+    venue_id: "opus_costanera"
+    event_name: "Luck Ra en Río Cuarto"
+    event_date: "2026-03-21"
+    sale_start_at: "2026-03-01 10:00:00"
+    sold_out: true
+    hours_to_sold_out: 6.0
+    nominal_price: 14000

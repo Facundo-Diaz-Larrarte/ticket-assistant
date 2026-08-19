@@ -4,8 +4,8 @@ app:
   dry_run: true # En modo dry_run el asistente automatiza hasta antes de la pantalla de pago
 
 monitoring:
-  default_interval_seconds: 5.0
-  launch_window_interval_seconds: 1.5
+  default_interval_seconds: 15.0
+  launch_window_interval_seconds: 3.0
   adaptive_backoff_max_seconds: 60.0
   max_consecutive_errors: 5
 
