@@ -85,3 +85,7 @@ class MonitoredEventConfig(BaseModel):
     buyer_profile: str = "default"
     auto_buy: bool = True
     notify_telegram: bool = True
+
+# Alias for backwards compatibility
+NormalizedEvent = Event
+

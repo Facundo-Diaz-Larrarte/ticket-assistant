@@ -4,7 +4,7 @@ from datetime import datetime, timezone, timedelta
 from typing import Dict, Optional, Any
 
 from app.core.config import GlobalSettings, EventsFileConfig
-from app.core.models import MonitoredEventConfig, NormalizedEvent
+from app.core.models import MonitoredEventConfig, Event
 from app.core.enums import EventStatus
 from app.core.state_machine import EventStateMachine
 from app.providers.registry import ProviderRegistry
@@ -49,7 +49,7 @@ class UnifiedMonitor:
             self.state_machines[event_id] = EventStateMachine(event_id)
         return self.state_machines[event_id]
 
-    async def _freeze_prediction_if_needed(self, event: NormalizedEvent) -> Dict[str, Any]:
+    async def _freeze_prediction_if_needed(self, event: Event) -> Dict[str, Any]:
         """Calcula y congela la predicción pre-apertura en la base de datos si aún no se registró."""
         event_id = event.id or event.url
         if event_id in self.frozen_predictions:
